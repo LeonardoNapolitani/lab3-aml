@@ -10,7 +10,7 @@ from eval import validate
 
 def main():
     data_root = "/content/tiny-imagenet-200"
-    batch_size=128
+    batch_size=64
     num_epochs=50
     lr=0.001
     save_path = "/content/drive/MyDrive/best_customnet.pth"
