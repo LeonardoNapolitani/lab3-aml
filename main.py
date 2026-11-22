@@ -11,7 +11,7 @@ from eval import validate
 def main():
     data_root = "/content/tiny-imagenet-200"
     batch_size=64
-    num_epochs=50
+    num_epochs=25
     lr=0.001
     save_path = "/content/drive/MyDrive/best_customnet.pth"
     if not torch.cuda.is_available():
@@ -37,7 +37,8 @@ def main():
         scheduler.step()
         if val_acc > best_acc:
             best_acc = val_acc
-            torch.save(model.state_dict(), save_path)
+            if(best_acc>20.0):
+                torch.save(model.state_dict(), save_path)
             print(f"--> Nuovo record! Modello salvato su Drive (Val Acc: {best_acc:.2f}%)")
     print(f"\nAddestramento completato! Miglior Validation Accuracy: {best_acc:.2f}%")
     

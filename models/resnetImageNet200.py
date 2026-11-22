@@ -85,12 +85,9 @@ class CustomNet(nn.Module):
             ResidualDownSamplingBlock(256),
             ResidualBasicBlock(512),
             ResidualBasicBlock(512),
-            ResidualDownSamplingBlock(512),
-            ResidualBasicBlock(1024),
-            ResidualBasicBlock(1024),
             nn.AdaptiveAvgPool2d((1,1)),
             nn.Flatten(),
-            nn.Linear(1024,200)
+            nn.Linear(512,200)
             
         
             
