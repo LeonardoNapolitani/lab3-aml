@@ -5,7 +5,7 @@ import torch.optim as optim
 
 from models.resnetImageNet200 import CustomNet
 from data.custom4imagenetVal import get_dataloadersImagenet200
-import train
+from train import train
 from eval import validate
 
 def main():
