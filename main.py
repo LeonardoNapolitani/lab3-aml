@@ -28,10 +28,11 @@ def main():
     criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs)
+    scaler = torch.amp.GradScaler('cuda')
     best_acc = 0.0
     for epoch in range(1, num_epochs + 1):
         print(f"\n--- Epoca {epoch}/{num_epochs} (LR: {optimizer.param_groups[0]['lr']:.6f}) ---")
-        train(epoch, model, train_loader, criterion, optimizer)
+        train(epoch, model, train_loader, criterion, optimizer,scaler)
         val_acc = validate(model, val_loader, criterion)
         scheduler.step()
         if val_acc > best_acc:

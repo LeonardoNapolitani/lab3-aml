@@ -3,12 +3,12 @@
 import torch
 
 
-def train(epoch, model, train_loader, criterion, optimizer):
+def train(epoch, model, train_loader, criterion, optimizer,scaler):
     model.train()
     running_loss = 0.0
     correct = 0
     total = 0
-    scaler = torch.amp.GradScaler('cuda')
+    
 
     for batch_idx, (inputs, targets) in enumerate(train_loader):
         inputs, targets = inputs.cuda(), targets.cuda()
